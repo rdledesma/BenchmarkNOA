@@ -64,5 +64,5 @@ plt.plot(d.date, d.GHImerra)
 d = d.dropna()
 d = d[d.SZA<80]
 
-ms.rmbe(d.ghi, d.GHIl)
+ms.rmbe(d.ghi, d.GHImerra)
 
