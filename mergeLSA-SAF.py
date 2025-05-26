@@ -2,8 +2,8 @@ import pandas as pd
 
 d = pd.DataFrame()
 
-for year in range(2010, 2021):
-    d = pd.concat([d, pd.read_csv(f'LSASAF/SA/SA_LSA-SAF_{year}.csv', usecols=['date','GHI'])])
+for year in range(2013, 2016):
+    d = pd.concat([d, pd.read_csv(f'LSASAF/SCA/SCA_LSA-SAF_{year}.csv', usecols=['date','GHI'])])
 
 
 
@@ -16,4 +16,4 @@ d= d.resample(
                         on='date', 
                         ).mean().reset_index()
 
-d.to_csv('LSASAF/sa.csv', index=False)
+d.to_csv('LSASAF/sca.csv', index=False)
