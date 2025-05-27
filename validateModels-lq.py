@@ -3,18 +3,18 @@ import Metrics as ms
 import matplotlib.pyplot as plt
 
 
-d1 = pd.read_csv("measured/ero/test.csv")
+d1 = pd.read_csv("measured/lq/test.csv")
 d1['date'] = pd.to_datetime(d1.date)
 d1 = d1.sort_values(['date'])
 
 
 
-d2 = pd.read_csv("measured/ero/train.csv")
+d2 = pd.read_csv("measured/lq/train.csv")
 d2['date'] = pd.to_datetime(d2.date)
 d2 = d2.sort_values(['date'])
 
 
-d3 = pd.read_csv("measured/ero/val.csv")
+d3 = pd.read_csv("measured/lq/val.csv")
 d3['date'] = pd.to_datetime(d3.date)
 d3 = d3.sort_values(['date'])
 
@@ -27,7 +27,7 @@ d = pd.concat([d1,d2,d3]).sort_values(['date'])
 
 
 
-lsaf = pd.read_csv('LSASAF/ero.csv')
+lsaf = pd.read_csv('LSASAF/lq.csv')
 lsaf['date'] = pd.to_datetime(lsaf.date)
 lsaf = (lsaf.set_index('date')
       .reindex(d.date)
@@ -40,8 +40,8 @@ d['GHIl'] = lsaf.GHI.values
 
 
 from datetime import timedelta
-merra = pd.read_csv('MERRA/ero.csv')
-merra['date'] = pd.to_datetime(merra.date)
+merra = pd.read_csv('MERRA/lq.csv')
+merra['date'] = pd.to_datetime(merra.date) - timedelta(minutes=30)
 
 
 merra = (merra.set_index('date')
@@ -63,12 +63,15 @@ plt.plot(d.date, d.GHImerra)
 
 
 d = d.dropna()
-ms.rmbe(d.ghi, d.GHI)
-ms.rmbe(d.ghi, d.GHIl)
-ms.rmbe(d.ghi, d.GHIera)
-ms.rmbe(d.ghi, d.GHImerra)
+ms.rrmsd(d.ghi, d.GHI)
+ms.rrmsd(d.ghi, d.GHIl)
+ms.rrmsd(d.ghi, d.GHIera)
+ms.rrmsd(d.ghi, d.GHImerra)
 
     
+
+
+
 
 
 import pandas as pd
@@ -76,18 +79,18 @@ import Metrics as ms
 import matplotlib.pyplot as plt
 
 
-d1 = pd.read_csv("measured/ero/test.csv")
+d1 = pd.read_csv("measured/lq/test.csv")
 d1['date'] = pd.to_datetime(d1.date)
 d1 = d1.sort_values(['date'])
 
 
 
-d2 = pd.read_csv("measured/ero/train.csv")
+d2 = pd.read_csv("measured/lq/train.csv")
 d2['date'] = pd.to_datetime(d2.date)
 d2 = d2.sort_values(['date'])
 
 
-d3 = pd.read_csv("measured/ero/val.csv")
+d3 = pd.read_csv("measured/lq/val.csv")
 d3['date'] = pd.to_datetime(d3.date)
 d3 = d3.sort_values(['date'])
 
@@ -103,8 +106,6 @@ dTrain = d[d['date'].isin(datesTrain)]
 dVal = d[d['date'].isin(datesVal)]
 dTest = d[d['date'].isin(datesTest)]
 
-dTrain.to_csv('Procesed/ero_train.csv', index=False)
-dVal.to_csv('Procesed/ero_val.csv', index=False)
-dTest.to_csv('Procesed/ero_test.csv', index=False)
-
-
+dTrain.to_csv('Procesed/lq_train.csv', index=False)
+dVal.to_csv('Procesed/lq_val.csv', index=False)
+dTest.to_csv('Procesed/lq_test.csv', index=False)
