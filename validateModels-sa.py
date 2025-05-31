@@ -66,3 +66,21 @@ d = d[d.SZA<80]
 
 ms.rmbe(d.ghi, d.GHImerra)
 
+from sklearn.model_selection import train_test_split
+
+dTrain = d[d.date.dt.year == 2013]
+
+dTrain, dVal = train_test_split(
+
+    dTrain, test_size=0.33, random_state=42)
+
+
+dTest = d[d.date.dt.year != 2013]
+
+
+
+dTrain.to_csv('Procesed/sa_train.csv', index=False)
+dVal.to_csv('Procesed/sa_val.csv', index=False)
+dTest.to_csv('Procesed/sa_test.csv', index=False)
+
+

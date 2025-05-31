@@ -91,8 +91,46 @@ plt.plot(d.date, d.GHIera)
 plt.plot(d.date, d.GHImerra)
 
 
+d['Clear sky GHI'] = d.GHIcc.values
+
 d = d.dropna()
 ms.rmae(d.ghi, d.GHImerra)
 
+
+import pandas as pd
+import Metrics as ms
+import matplotlib.pyplot as plt
+
+
+d1 = pd.read_csv("measured/yu/test.csv")
+d1['date'] = pd.to_datetime(d1.date)
+d1 = d1.sort_values(['date'])
+
+
+
+d2 = pd.read_csv("measured/yu/train.csv")
+d2['date'] = pd.to_datetime(d2.date)
+d2 = d2.sort_values(['date'])
+
+
+d3 = pd.read_csv("measured/yu/val.csv")
+d3['date'] = pd.to_datetime(d3.date)
+d3 = d3.sort_values(['date'])
+
+
+
+datesTrain = d2.date
+datesTest = d1.date
+datesVal = d3.date
+
+
+
+dTrain = d[d['date'].isin(datesTrain)]
+dVal = d[d['date'].isin(datesVal)]
+dTest = d[d['date'].isin(datesTest)]
+
+dTrain.to_csv('Procesed/yu_train.csv', index=False)
+dVal.to_csv('Procesed/yu_val.csv', index=False)
+dTest.to_csv('Procesed/yu_test.csv', index=False)
 
 
