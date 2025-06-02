@@ -3,9 +3,9 @@ from sklearn.linear_model import LinearRegression
 import matplotlib.pyplot as plt
 import Metrics as ms
 
-dTrain = pd.read_csv('Procesed/yu_train.csv')
-dVal = pd.read_csv('Procesed/yu_val.csv')
-dTest = pd.read_csv('Procesed/yu_test.csv')
+dTrain = pd.read_csv('Procesed/lq_train.csv')
+dVal = pd.read_csv('Procesed/lq_val.csv')
+dTest = pd.read_csv('Procesed/lq_test.csv')
 
 
 # dTrain['date'] = pd.to_datetime(dTrain.date)
@@ -175,20 +175,26 @@ print(dTest.ghi.mean())
 # # ms.rrmsd(dTest.ghi, dTest.adapMerra)
 
 
-
+print("##############")
 print(f"a: {modelCams1.coef_[0]}, b: {modelCams1.intercept_}")
 print(f"a: {modelCams2.coef_[0]}, b: {modelCams2.intercept_}")
 print(f"a: {modelCams3.coef_[0]}, b: {modelCams3.intercept_}")
+print("##############\n")
 
+
+
+print("############## LSASAF ########")
 print(f"a: {modelLsa1.coef_[0]}, b: {modelLsa1.intercept_}")
 print(f"a: {modelLsa2.coef_[0]}, b: {modelLsa2.intercept_}")
 print(f"a: {modelLsa3.coef_[0]}, b: {modelLsa3.intercept_}")
+print("##############\n")
 
 
+print("############## ERA ########")
 print(f"a: {modelEra1.coef_[0]}, b: {modelEra1.intercept_}")
 print(f"a: {modelEra2.coef_[0]}, b: {modelEra2.intercept_}")
 print(f"a: {modelEra3.coef_[0]}, b: {modelEra3.intercept_}")
-
+print("###################### \n")
 
 print(f"a: {modelMerra1.coef_[0]}, b: {modelMerra1.intercept_}")
 print(f"a: {modelMerra2.coef_[0]}, b: {modelMerra2.intercept_}")
