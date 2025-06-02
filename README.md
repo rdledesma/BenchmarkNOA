@@ -1,8 +1,4 @@
-Aquí tienes un borrador de `README.md` con estilo académico, siguiendo el formato típico de la IEEE para repositorios de código asociados a publicaciones científicas:
-
----
-
-# 📡 Adaptive Correction of GHI Satellite Estimates using Linear Regression
+# 📡 Site Adaptation of Satellite-Derived and Reanalysis-Based Global Horizontal Irradiance Estimates in Northwestern Argentina
 
 ## Overview
 
